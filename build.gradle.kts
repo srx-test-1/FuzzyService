@@ -31,7 +31,8 @@ tasks.register<Copy>("unzipNewrelic") {
 }
 
 dependencies {
-    implementation ("commons-fileupload:commons-fileupload:1.5")
+    // Updated to commons-fileupload 1.6.0 (fixes CVE-2023-24998 and other vulnerabilities)
+    implementation ("commons-fileupload:commons-fileupload:1.6.0")
     implementation ("org.apache.commons:commons-lang3:3.9")
     implementation ("org.apache.commons:commons-collections4:4.4")
 
@@ -47,10 +48,10 @@ dependencies {
 
     implementation ("com.google.guava:guava:31.1-jre")
 
-    // Jackson versions managed by Spring Boot 2.6.6 (automatically uses secure versions)
-    implementation ("com.fasterxml.jackson.core:jackson-databind")
-    implementation ("com.fasterxml.jackson.core:jackson-core")
-    implementation ("com.fasterxml.jackson.core:jackson-annotations")
+    // Override Jackson versions to fix CVE-2022-42003, CVE-2022-42004, and related vulnerabilities
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.13.4.2")
+    implementation ("com.fasterxml.jackson.core:jackson-core:2.13.4")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.13.4")
 
     implementation ("commons-net:commons-net:3.9.0")
 
