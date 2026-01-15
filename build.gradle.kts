@@ -14,19 +14,21 @@ repositories {
 }
 
 // Configure dependency management to override Spring Framework version to patch CVE-2024-22259
+// Using 5.3.39 (latest available in 5.3.x line) which includes CVE-2024-22259 fix
+// Note: Some vulnerabilities in 5.3.x line have no patches available and require migration to Spring 6.x
 dependencyManagement {
     imports {
         mavenBom("org.springframework.boot:spring-boot-dependencies:2.7.18")
     }
     dependencies {
-        dependency("org.springframework:spring-core:5.3.33")
-        dependency("org.springframework:spring-context:5.3.33")
-        dependency("org.springframework:spring-web:5.3.33")
-        dependency("org.springframework:spring-webmvc:5.3.33")
-        dependency("org.springframework:spring-beans:5.3.33")
-        dependency("org.springframework:spring-aop:5.3.33")
-        dependency("org.springframework:spring-expression:5.3.33")
-        dependency("org.springframework:spring-jcl:5.3.33")
+        dependency("org.springframework:spring-core:5.3.39")
+        dependency("org.springframework:spring-context:5.3.39")
+        dependency("org.springframework:spring-web:5.3.39")
+        dependency("org.springframework:spring-webmvc:5.3.39")
+        dependency("org.springframework:spring-beans:5.3.39")
+        dependency("org.springframework:spring-aop:5.3.39")
+        dependency("org.springframework:spring-expression:5.3.39")
+        dependency("org.springframework:spring-jcl:5.3.39")
     }
 }
 
