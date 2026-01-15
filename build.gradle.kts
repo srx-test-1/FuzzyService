@@ -36,6 +36,10 @@ dependencies {
     implementation ("org.apache.commons:commons-collections4:4.4")
 
     implementation ("org.springframework.boot:spring-boot-starter-web:2.7.18") // Updated to fix CVE-2024-22259
+    
+    // Explicitly override Spring Framework to 5.3.39 to fix CVE-2024-22259
+    // CVE-2024-22259 affects Spring Framework 5.3.0 - 5.3.32, fixed in 5.3.33+
+    implementation(platform("org.springframework:spring-framework-bom:5.3.39"))
 
     // Upgrade to Log4j2 which resolves vulnerabilities found in Log4j 1.x
     implementation ("org.apache.logging.log4j:log4j-core:2.14.1")
