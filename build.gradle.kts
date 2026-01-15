@@ -35,6 +35,7 @@ dependencies {
     implementation ("commons-fileupload:commons-fileupload:1.6.0")
     implementation ("org.apache.commons:commons-lang3:3.9")
     implementation ("org.apache.commons:commons-collections4:4.4")
+    implementation ("commons-net:commons-net:3.9.0")
 
     // Updated to Spring Boot 2.6.6 to include Spring Framework 5.3.18+ (fixes CVE-2022-22965 - Spring4Shell)
     implementation ("org.springframework.boot:spring-boot-starter-web:2.6.6")
@@ -43,11 +44,6 @@ dependencies {
     implementation ("org.apache.logging.log4j:log4j-core:2.17.2")
     implementation ("org.apache.logging.log4j:log4j-api:2.17.2")
 
-    // Upgrade to latest Gson version
-    implementation ("com.google.code.gson:gson:2.8.9")
-
-    implementation ("com.google.guava:guava:31.1-jre")
-
     // Override Jackson versions to fix CVE-2022-42003, CVE-2022-42004, and related vulnerabilities
     // Note: 2.13.4.2 is a security patch specific to databind; core and annotations use 2.13.4 (latest compatible)
     // This version combination is officially supported by the Jackson project
@@ -55,7 +51,9 @@ dependencies {
     implementation ("com.fasterxml.jackson.core:jackson-core:2.13.4")
     implementation ("com.fasterxml.jackson.core:jackson-annotations:2.13.4")
 
-    implementation ("commons-net:commons-net:3.9.0")
+    // Other dependencies
+    implementation ("com.google.code.gson:gson:2.8.9")
+    implementation ("com.google.guava:guava:31.1-jre")
 
     testImplementation ("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.1")
