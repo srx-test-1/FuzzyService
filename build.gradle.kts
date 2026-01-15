@@ -44,12 +44,11 @@ dependencies {
     implementation ("org.apache.logging.log4j:log4j-core:2.17.2")
     implementation ("org.apache.logging.log4j:log4j-api:2.17.2")
 
-    // Override Jackson versions to fix CVE-2022-42003, CVE-2022-42004, and related vulnerabilities
-    // Note: 2.13.4.2 is a security patch specific to databind; core and annotations use 2.13.4 (latest compatible)
-    // This version combination is officially supported by the Jackson project
-    implementation ("com.fasterxml.jackson.core:jackson-databind:2.13.4.2")
-    implementation ("com.fasterxml.jackson.core:jackson-core:2.13.4")
-    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.13.4")
+    // Override Jackson versions to fix StackOverflowError vulnerability (< 2.15.0) and other CVEs
+    // Updated to 2.15.2 which is the latest stable patch release in the 2.15.x series
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation ("com.fasterxml.jackson.core:jackson-core:2.15.2")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.15.2")
 
     // Other dependencies
     implementation ("com.google.code.gson:gson:2.8.9")
