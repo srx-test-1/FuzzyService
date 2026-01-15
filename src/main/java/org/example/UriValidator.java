@@ -13,11 +13,24 @@ import java.util.Set;
  */
 public class UriValidator {
     
+    private static final Set<String> ALLOWED_SCHEMES = new HashSet<>(Arrays.asList(
+        "http",
+        "https"
+    ));
+    
+    /**
+     * Allowed hosts for URL validation.
+     * 
+     * WARNING: 'localhost' is included for demonstration/testing purposes only.
+     * In production environments, carefully consider whether localhost access is necessary,
+     * as it could potentially be exploited for SSRF attacks against local services.
+     * Remove 'localhost' from this list if local access is not required.
+     */
     private static final Set<String> ALLOWED_HOSTS = new HashSet<>(Arrays.asList(
         "example.com",
         "www.example.com",
         "api.example.com",
-        "localhost"
+        "localhost"  // WARNING: Consider removing in production if not needed
     ));
     
     /**
@@ -32,7 +45,8 @@ public class UriValidator {
         }
         
         try {
-            String host = extractHost(url);
+            URI uri = extractAndValidateUri(url);
+            String host = uri.getHost();
             return isValidHost(host);
         } catch (Exception e) {
             // If parsing fails, the URL is invalid
@@ -70,7 +84,8 @@ public class UriValidator {
         }
         
         try {
-            String host = extractHost(url);
+            URI uri = extractAndValidateUri(url);
+            String host = uri.getHost();
             
             if (!isValidHost(host)) {
                 throw new IllegalArgumentException("Invalid host: " + host + ". Host must be in the allowed list.");
@@ -102,15 +117,25 @@ public class UriValidator {
     }
     
     /**
-     * Private helper method to extract host from URL using UriComponentsBuilder.
+     * Private helper method to extract and validate URI from URL using UriComponentsBuilder.
+     * Only allows HTTP and HTTPS schemes to prevent SSRF attacks via file://, jar://, etc.
      * 
      * @param url The URL string to parse
-     * @return The host extracted from the URL
+     * @return The validated URI extracted from the URL
+     * @throws IllegalArgumentException if the scheme is not allowed
      */
-    private static String extractHost(String url) {
+    private static URI extractAndValidateUri(String url) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
         URI uri = builder.build().toUri();
-        return uri.getHost();
+        
+        // Validate scheme - only allow HTTP/HTTPS to prevent file://, jar://, etc.
+        String scheme = uri.getScheme();
+        if (scheme == null || !ALLOWED_SCHEMES.contains(scheme.toLowerCase())) {
+            throw new IllegalArgumentException("Invalid or disallowed URL scheme: " + scheme + 
+                ". Only HTTP and HTTPS are allowed.");
+        }
+        
+        return uri;
     }
 }
 

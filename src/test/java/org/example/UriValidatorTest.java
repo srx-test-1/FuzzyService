@@ -118,6 +118,29 @@ public class UriValidatorTest {
     }
     
     @Test
+    public void testSchemeValidation() {
+        // Only HTTP and HTTPS should be allowed
+        assertTrue(UriValidator.isValidUrl("http://example.com/path"));
+        assertTrue(UriValidator.isValidUrl("https://example.com/path"));
+        
+        // Disallow dangerous schemes that could be used for SSRF
+        assertFalse(UriValidator.isValidUrl("file:///etc/passwd"));
+        assertFalse(UriValidator.isValidUrl("jar:file:/path/to/jar!/resource"));
+        assertFalse(UriValidator.isValidUrl("ftp://example.com/file"));
+        assertFalse(UriValidator.isValidUrl("gopher://example.com/"));
+        assertFalse(UriValidator.isValidUrl("data:text/html,<script>alert('xss')</script>"));
+    }
+    
+    @Test
+    public void testValidateUrlOrThrowWithInvalidScheme() {
+        // Should throw exception for disallowed schemes
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            UriValidator.validateUrlOrThrow("file:///etc/passwd");
+        });
+        assertTrue(exception.getMessage().contains("scheme"));
+    }
+    
+    @Test
     public void testGetAllowedHosts() {
         var allowedHosts = UriValidator.getAllowedHosts();
         assertNotNull(allowedHosts);
