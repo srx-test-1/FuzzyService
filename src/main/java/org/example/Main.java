@@ -104,7 +104,7 @@ public class Main {
         try {
             Object result = mapper.readValue(jsonInput, Object.class);
             System.out.println("Jackson deserialization completed: " + result);
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             System.out.println("Jackson processing failed: " + e.getMessage());
         }
     }
