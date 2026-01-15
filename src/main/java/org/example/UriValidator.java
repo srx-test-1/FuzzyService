@@ -27,15 +27,12 @@ public class UriValidator {
      * @return true if the URL is valid and host is allowed, false otherwise
      */
     public static boolean isValidUrl(String url) {
-        if (url == null || url.trim().isEmpty()) {
+        if (!isUrlNotEmpty(url)) {
             return false;
         }
         
         try {
-            UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
-            URI uri = builder.build().toUri();
-            String host = uri.getHost();
-            
+            String host = extractHost(url);
             return isValidHost(host);
         } catch (Exception e) {
             // If parsing fails, the URL is invalid
@@ -68,14 +65,12 @@ public class UriValidator {
      * @throws IllegalArgumentException if the URL is invalid or host is not allowed
      */
     public static void validateUrlOrThrow(String url) {
-        if (url == null || url.trim().isEmpty()) {
+        if (!isUrlNotEmpty(url)) {
             throw new IllegalArgumentException("URL cannot be null or empty");
         }
         
         try {
-            UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
-            URI uri = builder.build().toUri();
-            String host = uri.getHost();
+            String host = extractHost(url);
             
             if (!isValidHost(host)) {
                 throw new IllegalArgumentException("Invalid host: " + host + ". Host must be in the allowed list.");
@@ -95,4 +90,27 @@ public class UriValidator {
     public static Set<String> getAllowedHosts() {
         return new HashSet<>(ALLOWED_HOSTS);
     }
+    
+    /**
+     * Private helper method to check if URL is not null or empty.
+     * 
+     * @param url The URL to check
+     * @return true if URL is not null or empty, false otherwise
+     */
+    private static boolean isUrlNotEmpty(String url) {
+        return url != null && !url.trim().isEmpty();
+    }
+    
+    /**
+     * Private helper method to extract host from URL using UriComponentsBuilder.
+     * 
+     * @param url The URL string to parse
+     * @return The host extracted from the URL
+     */
+    private static String extractHost(String url) {
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
+        URI uri = builder.build().toUri();
+        return uri.getHost();
+    }
 }
+
