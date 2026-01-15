@@ -143,4 +143,3 @@ public class UriValidator {
         return uri;
     }
 }
-
