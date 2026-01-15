@@ -8,6 +8,9 @@ plugins {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
+// Dependency versions for security-critical libraries
+val jacksonVersion = "2.15.2"
+
 repositories {
     mavenCentral()
 }
@@ -46,9 +49,9 @@ dependencies {
 
     // Override Jackson versions to fix StackOverflowError vulnerability (< 2.15.0) and other CVEs
     // Updated to 2.15.2 which is the latest stable patch release in the 2.15.x series
-    implementation ("com.fasterxml.jackson.core:jackson-databind:2.15.2")
-    implementation ("com.fasterxml.jackson.core:jackson-core:2.15.2")
-    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.15.2")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
 
     // Other dependencies
     implementation ("com.google.code.gson:gson:2.8.9")
