@@ -49,7 +49,8 @@ dependencies {
     implementation ("com.google.guava:guava:31.1-jre")
 
     // Override Jackson versions to fix CVE-2022-42003, CVE-2022-42004, and related vulnerabilities
-    // Using 2.13.4.2 for databind (security patch) and 2.13.4 for core/annotations (latest stable compatible)
+    // Note: 2.13.4.2 is a security patch specific to databind; core and annotations use 2.13.4 (latest compatible)
+    // This version combination is officially supported by the Jackson project
     implementation ("com.fasterxml.jackson.core:jackson-databind:2.13.4.2")
     implementation ("com.fasterxml.jackson.core:jackson-core:2.13.4")
     implementation ("com.fasterxml.jackson.core:jackson-annotations:2.13.4")
