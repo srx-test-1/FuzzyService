@@ -19,19 +19,24 @@ public class UriValidator {
     ));
     
     /**
-     * Allowed hosts for URL validation.
+     * Allowed hosts for URL validation (normalized to lowercase).
      * 
      * WARNING: 'localhost' is included for demonstration/testing purposes only.
      * In production environments, carefully consider whether localhost access is necessary,
      * as it could potentially be exploited for SSRF attacks against local services.
      * Remove 'localhost' from this list if local access is not required.
      */
-    private static final Set<String> ALLOWED_HOSTS = new HashSet<>(Arrays.asList(
-        "example.com",
-        "www.example.com",
-        "api.example.com",
-        "localhost"  // WARNING: Consider removing in production if not needed
-    ));
+    private static final Set<String> ALLOWED_HOSTS;
+    
+    static {
+        // Initialize and normalize all hosts to lowercase for performance
+        Set<String> hosts = new HashSet<>();
+        hosts.add("example.com".toLowerCase());
+        hosts.add("www.example.com".toLowerCase());
+        hosts.add("api.example.com".toLowerCase());
+        hosts.add("localhost".toLowerCase());  // WARNING: Consider removing in production if not needed
+        ALLOWED_HOSTS = hosts;
+    }
     
     /**
      * Validates a URL string and ensures the host is in the allowed list.

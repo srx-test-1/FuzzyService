@@ -1,6 +1,7 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -142,7 +143,7 @@ public class UriValidatorTest {
     
     @Test
     public void testGetAllowedHosts() {
-        var allowedHosts = UriValidator.getAllowedHosts();
+        Set<String> allowedHosts = UriValidator.getAllowedHosts();
         assertNotNull(allowedHosts);
         assertTrue(allowedHosts.contains("example.com"));
         assertTrue(allowedHosts.contains("www.example.com"));
