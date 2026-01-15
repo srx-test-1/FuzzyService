@@ -8,6 +8,9 @@ plugins {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
+// Dependency versions for security-critical libraries
+val jacksonVersion = "2.15.2"
+
 repositories {
     mavenCentral()
 }
@@ -31,30 +34,28 @@ tasks.register<Copy>("unzipNewrelic") {
 }
 
 dependencies {
-    implementation ("commons-fileupload:commons-fileupload:1.3.3")
+    // Updated to commons-fileupload 1.6.0 (fixes CVE-2023-24998 and other vulnerabilities)
+    implementation ("commons-fileupload:commons-fileupload:1.6.0")
     implementation ("org.apache.commons:commons-lang3:3.9")
     implementation ("org.apache.commons:commons-collections4:4.4")
+    implementation ("commons-net:commons-net:3.9.0")
 
-    implementation ("org.springframework.boot:spring-boot-starter-web:2.5.10") // Secure and stable
+    // Updated to Spring Boot 2.6.6 to include Spring Framework 5.3.18+ (fixes CVE-2022-22965 - Spring4Shell)
+    implementation ("org.springframework.boot:spring-boot-starter-web:2.6.6")
 
-    // Upgrade to Log4j2 which resolves vulnerabilities found in Log4j 1.x
-    implementation ("org.apache.logging.log4j:log4j-core:2.14.1")
-    implementation ("org.apache.logging.log4j:log4j-api:2.14.1")
+    // Upgrade to Log4j 2.17.2 which resolves CVE-2021-44228 (Log4Shell) and related vulnerabilities
+    implementation ("org.apache.logging.log4j:log4j-core:2.17.2")
+    implementation ("org.apache.logging.log4j:log4j-api:2.17.2")
 
-    // Upgrade to latest Gson version
+    // Override Jackson versions to fix StackOverflowError vulnerability (< 2.15.0) and other CVEs
+    // Updated to 2.15.2 which is the latest stable patch release in the 2.15.x series
+    implementation ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
+
+    // Other dependencies
     implementation ("com.google.code.gson:gson:2.8.9")
-
-
-    implementation ("com.google.guava:guava:18.0")
-
-    implementation ("com.fasterxml.jackson.core:jackson-databind:2.8.11")
-
-    implementation ("com.fasterxml.jackson.core:jackson-core:2.8.11")
-
-    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.8.11")
-
-    implementation ("commons-net:commons-net:3.6")
-
+    implementation ("com.google.guava:guava:31.1-jre")
 
     testImplementation ("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.1")
