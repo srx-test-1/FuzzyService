@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.IPValidatorTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2026-01-20T15:02:51" hostname="runnervmmtnos" time="0.049">
+  <properties/>
+  <testcase name="testLinkLocalAddresses()" classname="org.example.IPValidatorTest" time="0.013"/>
+  <testcase name="testOctalNotation()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testLoopbackIPv4Abbreviated()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testPublicIPv6Addresses()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testPrivateIPv4Ranges()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testWhitespaceHandling()" classname="org.example.IPValidatorTest" time="0.0"/>
+  <testcase name="testPublicIPv4Addresses()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testIPv6MappedLoopback()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testPrivateIPv4Abbreviated()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testIPv6PrivateAddresses()" classname="org.example.IPValidatorTest" time="0.0"/>
+  <testcase name="testMulticastAddresses()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testInvalidInputs()" classname="org.example.IPValidatorTest" time="0.003"/>
+  <testcase name="testIPv6MappedPrivate()" classname="org.example.IPValidatorTest" time="0.0"/>
+  <testcase name="testSpecificCVECases()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testLoopbackIPv4Standard()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testLoopbackIPv6()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testEdgeCasesBoundary()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <testcase name="testReservedAddresses()" classname="org.example.IPValidatorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
