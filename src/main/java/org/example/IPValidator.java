@@ -84,8 +84,7 @@ public class IPValidator {
      */
     private static String normalizeIPAddress(String ipAddress) {
         // Handle IPv6 addresses with embedded IPv4 (like ::fFFf:127.0.0.1)
-        if (ipAddress.toLowerCase().contains("::ffff:") || 
-            ipAddress.toLowerCase().contains("::0ffff:")) {
+        if (ipAddress.toLowerCase().contains("::ffff:")) {
             // Extract the IPv4 part
             String[] parts = ipAddress.split(":");
             String lastPart = parts[parts.length - 1];
@@ -144,7 +143,8 @@ public class IPValidator {
         
         // Parse and normalize all octets (handles octal notation)
         StringBuilder normalized = new StringBuilder();
-        for (int i = 0; i < octets.length; i++) {
+        int numOctets = octets.length;
+        for (int i = 0; i < numOctets; i++) {
             int octetValue = parseOctet(octets[i]);
             if (octetValue < 0 || octetValue > 255) {
                 return ipv4; // Invalid, let InetAddress handle it
@@ -157,9 +157,8 @@ public class IPValidator {
         }
         
         // Pad with zeros if abbreviated
-        while (octets.length < 4) {
+        for (int i = numOctets; i < 4; i++) {
             normalized.append(".0");
-            octets = new String[octets.length + 1]; // Just for loop control
         }
         
         String result = normalized.toString();
