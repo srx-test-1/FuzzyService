@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.service.InventoryManagementServiceTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-01-21T22:18:20" hostname="runnervmmtnos" time="0.021">
+  <properties/>
+  <testcase name="testValidateRedirectUrl_WithNullUrl_ThrowsException()" classname="org.example.service.InventoryManagementServiceTest" time="0.001"/>
+  <testcase name="testValidateRedirectUrl_WithExternalMaliciousSite_ThrowsException()" classname="org.example.service.InventoryManagementServiceTest" time="0.001"/>
+  <testcase name="testValidateRedirectUrl_WithUntrustedHost_ThrowsException()" classname="org.example.service.InventoryManagementServiceTest" time="0.001"/>
+  <testcase name="testBuildInventoryApiUrl_WithAllowedHost_Success()" classname="org.example.service.InventoryManagementServiceTest" time="0.001"/>
+  <testcase name="testValidateRedirectUrl_With127_0_0_1_Success()" classname="org.example.service.InventoryManagementServiceTest" time="0.001"/>
+  <testcase name="testBuildInventoryApiUrl_WithExternalAttackerHost_ThrowsException()" classname="org.example.service.InventoryManagementServiceTest" time="0.002"/>
+  <testcase name="testValidateRedirectUrl_WithTrustedPartner_Success()" classname="org.example.service.InventoryManagementServiceTest" time="0.0"/>
+  <testcase name="testValidateRedirectUrl_WithEmptyUrl_ThrowsException()" classname="org.example.service.InventoryManagementServiceTest" time="0.001"/>
+  <testcase name="testBuildInventoryApiUrl_WithUntrustedHost_ThrowsException()" classname="org.example.service.InventoryManagementServiceTest" time="0.001"/>
+  <testcase name="testValidateRedirectUrl_WithAPISubdomain_Success()" classname="org.example.service.InventoryManagementServiceTest" time="0.0"/>
+  <testcase name="testBuildInventoryApiUrl_WithInternalIP_ThrowsException()" classname="org.example.service.InventoryManagementServiceTest" time="0.001"/>
+  <testcase name="testBuildInventoryApiUrl_WithLocalhost_Success()" classname="org.example.service.InventoryManagementServiceTest" time="0.001"/>
+  <testcase name="testValidateRedirectUrl_WithAllowedHost_Success()" classname="org.example.service.InventoryManagementServiceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
