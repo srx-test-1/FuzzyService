@@ -32,7 +32,8 @@ public class FuzzyController {
             URI validatedUri = fuzzyService.buildFuzzySearchUrl(apiBaseUrl, query);
             return ResponseEntity.ok(validatedUri.toString());
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+            // Don't expose detailed error messages to prevent information leakage
+            return ResponseEntity.badRequest().body("Invalid or untrusted URL");
         }
     }
 
@@ -48,7 +49,8 @@ public class FuzzyController {
             URI validatedUri = fuzzyService.validateCallbackUrl(callbackUrl);
             return ResponseEntity.ok("Callback URL is valid: " + validatedUri.toString());
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+            // Don't expose detailed error messages to prevent information leakage
+            return ResponseEntity.badRequest().body("Invalid or untrusted callback URL");
         }
     }
 }
