@@ -1,0 +1,30 @@
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+*.swp
+*.bak
+*~
+
+# New Relic
+newrelic/
