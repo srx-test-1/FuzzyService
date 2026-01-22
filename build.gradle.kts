@@ -42,8 +42,8 @@ dependencies {
     implementation ("org.apache.logging.log4j:log4j-core:2.17.1")
     implementation ("org.apache.logging.log4j:log4j-api:2.17.1")
 
-    // Upgrade to latest Gson version
-    implementation ("com.google.code.gson:gson:2.8.9")
+    // Upgrade to latest Gson version to resolve security vulnerabilities
+    implementation ("com.google.code.gson:gson:2.10.1")
 
 
     implementation ("com.google.guava:guava:31.1-jre")
