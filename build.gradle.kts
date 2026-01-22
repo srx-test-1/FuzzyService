@@ -48,10 +48,10 @@ dependencies {
 
     implementation ("com.google.guava:guava:31.1-jre")
 
-    // Jackson versions upgraded to resolve multiple CVEs including resource consumption and deep nesting issues
-    implementation ("com.fasterxml.jackson.core:jackson-databind:2.13.4.2")
-    implementation ("com.fasterxml.jackson.core:jackson-core:2.13.4")
-    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.13.4")
+    // Jackson versions upgraded to 2.15.2 to resolve StackoverflowError and other CVEs
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation ("com.fasterxml.jackson.core:jackson-core:2.15.2")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.15.2")
 
     implementation ("commons-net:commons-net:3.9.0")
 
