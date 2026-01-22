@@ -31,7 +31,7 @@ tasks.register<Copy>("unzipNewrelic") {
 }
 
 dependencies {
-    implementation ("commons-fileupload:commons-fileupload:1.5")
+    implementation ("commons-fileupload:commons-fileupload:1.6.0")
     implementation ("org.apache.commons:commons-lang3:3.12.0")
     implementation ("org.apache.commons:commons-collections4:4.4")
 
@@ -48,10 +48,10 @@ dependencies {
 
     implementation ("com.google.guava:guava:31.1-jre")
 
-    // Jackson versions aligned with Spring Boot 2.6.6 dependencies
-    implementation ("com.fasterxml.jackson.core:jackson-databind:2.13.2")
-    implementation ("com.fasterxml.jackson.core:jackson-core:2.13.2")
-    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.13.2")
+    // Jackson versions upgraded to resolve multiple CVEs including resource consumption and deep nesting issues
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.13.4.2")
+    implementation ("com.fasterxml.jackson.core:jackson-core:2.13.4")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.13.4")
 
     implementation ("commons-net:commons-net:3.9.0")
 
