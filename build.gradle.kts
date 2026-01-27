@@ -31,14 +31,15 @@ tasks.register<Copy>("unzipNewrelic") {
 }
 
 dependencies {
+    // CVE-2024-22262: Override Spring Framework to patched version 5.3.34
+    // Using enforcedPlatform to ensure all Spring Framework dependencies use 5.3.34
+    implementation(enforcedPlatform("org.springframework:spring-framework-bom:5.3.34"))
+    
     implementation ("commons-fileupload:commons-fileupload:1.3.3")
     implementation ("org.apache.commons:commons-lang3:3.9")
     implementation ("org.apache.commons:commons-collections4:4.4")
 
     implementation ("org.springframework.boot:spring-boot-starter-web:2.5.10") // Secure and stable
-    
-    // CVE-2024-22262: Override Spring Framework to patched version 5.3.34
-    implementation(platform("org.springframework:spring-framework-bom:5.3.34"))
 
     // Upgrade to Log4j2 which resolves vulnerabilities found in Log4j 1.x
     implementation ("org.apache.logging.log4j:log4j-core:2.14.1")
