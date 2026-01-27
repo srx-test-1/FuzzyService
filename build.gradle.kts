@@ -31,6 +31,10 @@ tasks.register<Copy>("unzipNewrelic") {
 }
 
 dependencies {
+    // CVE-2024-22262: Override Spring Framework to patched version 5.3.34
+    // Using enforcedPlatform to ensure all Spring Framework dependencies use 5.3.34
+    implementation(enforcedPlatform("org.springframework:spring-framework-bom:5.3.34"))
+    
     implementation ("commons-fileupload:commons-fileupload:1.3.3")
     implementation ("org.apache.commons:commons-lang3:3.9")
     implementation ("org.apache.commons:commons-collections4:4.4")
